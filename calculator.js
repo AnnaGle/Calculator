@@ -5,10 +5,11 @@ let storedOperation = null;
 
 let numbersPlacement = document.querySelector('.numbers')
 let space = document.querySelector('.space')
+let operator = document.querySelector('.operator')
 
-let numberButtons = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
+let numberButtons = ['1', '2', '3', '4', '5', '6', '7', '8', '9','0', '.'];
 
-let operetionButtons = ['AC', '÷', 'x', '-', '+', '=']
+let operetionButtons = ['+','-','÷', 'x' ,'AC', '=',]
 
 
 function storeNumberVariable(event) {
@@ -73,12 +74,12 @@ printNumberBtn();
 
 function printOperationBtn() {
     for (var i = 0; i < operetionButtons.length; i++) {
-        let btn = document.createElement('button');
-        btn.className = 'btn'
-        btn.onclick = storeOperationVariable
+        let opbtn = document.createElement('button');
+        opbtn.className = 'opbtn'
+        opbtn.onclick = storeOperationVariable
         let t = document.createTextNode(operetionButtons[i]);
-        btn.appendChild(t);
-        numbersPlacement.appendChild(btn);
+        opbtn.appendChild(t);
+        operator.appendChild(opbtn);
     }
 }
 printOperationBtn();

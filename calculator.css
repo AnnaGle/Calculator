@@ -1,5 +1,58 @@
+
+
+.space {
+    border: 2px solid black;
+    border-radius: 5px;
+    height: 20px;
+    text-align:right;
+    width: 300px;
+   
+}
+
 .btn {
     border-radius: 5px;
-    background-color: rgb(255, 163, 240);
+    background-color: rgb(143, 143, 143);
+    padding: 10px;
+    width:33%;
+    
+}
+.opbtn {
+    border-radius: 5px;
+    background-color: rgb(199, 122, 145);
+    padding: 10px;
+    width: 50%;
+}
+.opbtn:hover {
+    background-color: rgb(199, 37, 164)
 
 }
+
+.btn:hover {
+    background-color: rgb(85, 67, 81)
+}
+
+.buttons {
+    display: flex;
+    width: 300px;
+    align-content: stretch;
+    height: 150px;
+}
+
+
+.numbers {
+   flex-direction: row;
+   flex-basis: 60%;
+
+}
+
+.operator {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 50%;
+    
+}
+ h1{
+    font-size: medium;
+    font-family: Arial, Helvetica, sans-serif;
+ }
