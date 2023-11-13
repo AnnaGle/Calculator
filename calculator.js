@@ -1,72 +1,104 @@
-// let firstVariable = a;
-// let secondVariable = b;
+let firstVariable = '';
+let secondVariable = '';
 // let operator = x;
+let storedOperation = null;
 
 let numbersPlacement = document.querySelector('.numbers')
+let space = document.querySelector('.space')
 
-let numberButtons = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+let numberButtons = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
+
+let operetionButtons = ['AC', '÷', 'x', '-', '+', '=']
 
 
-function storeVariable (event){
+function storeNumberVariable(event) {
     let storedNumber = event.target.innerText
-    console.log (storedNumber)
+    if (storedOperation !== null) {
+        if (secondVariable === '' && storedNumber === '.') {
+            secondVariable += '0'
+        }
+        secondVariable += storedNumber;
 
+    }
+    else {
+        if (firstVariable === '' && storedNumber === '.') {
+            firstVariable += '0'
+        }
+        firstVariable += storedNumber;
+    }
+    display()
 }
 
-function printBtn() {
+const display = () => {
+    console.log({ firstVariable, secondVariable, storedOperation, storedOperation })
+    if (secondVariable.length > 0) {
+        space.innerText = secondVariable
+    } else {
+        space.innerText = firstVariable
+    }
+}
+
+function storeOperationVariable(event) {
+    let operation = event.target.innerText
+
+    if (firstVariable === "") return
+
+    if (operation === 'AC') {
+        firstVariable = '';
+        secondVariable = '';
+        storedOperation = null;
+    }
+    else {
+        if (firstVariable !== "" && secondVariable !== "" && storedOperation !== null) {
+            oparate()
+        }
+        if (operation !== '=') {
+            storedOperation = operation;
+        }
+    }
+    display()
+}
+
+function printNumberBtn() {
     for (var i = 0; i < numberButtons.length; i++) {
         let btn = document.createElement('button');
         btn.className = 'btn'
-        btn.onclick = storeVariable
+        btn.onclick = storeNumberVariable
         let t = document.createTextNode(numberButtons[i]);
         btn.appendChild(t);
         numbersPlacement.appendChild(btn);
     }
 }
-printBtn();
+printNumberBtn();
 
-
-
-
-
-function add(a, b) {
-    let sum = a + b
-    return sum
+function printOperationBtn() {
+    for (var i = 0; i < operetionButtons.length; i++) {
+        let btn = document.createElement('button');
+        btn.className = 'btn'
+        btn.onclick = storeOperationVariable
+        let t = document.createTextNode(operetionButtons[i]);
+        btn.appendChild(t);
+        numbersPlacement.appendChild(btn);
+    }
 }
+printOperationBtn();
 
-function substract(a, b) {
-    let difference = a - b
-    return difference
+function oparate() {
+    let result = 0
+    if (storedOperation === '+') {
+        result = Number(firstVariable) + Number(secondVariable)
+    }
+    else if (storedOperation === '-') {
+        result = Number(firstVariable) - Number(secondVariable)
+    }
+    else if (storedOperation === 'x') {
+        result = Number(firstVariable) * Number(secondVariable)
+    }
+    else if (storedOperation === '÷') {
+        result = Number(firstVariable) / Number(secondVariable)
+    }
+
+    firstVariable = Math.round(result*1000000000)/1000000000
+    secondVariable = '';
+    storedOperation = null;
 }
-
-function multiply(a, b) {
-    let multiplication = a * b
-    return multiplication
-}
-
-function devide(a, b) {
-    let division = a / b
-    return division
-}
-
-// function oparate() {
-//     if () {
-//         let wynik = sum;
-//         alert(wynik)
-//     }
-
-//     else if () {//substract
-//         let wynik = substract;
-//         alert(wynik)
-//     }
-
-//     else if () {
-//         let wynik = multiply
-//         alert(wynik)
-//     }
-
-//     else if () {
-//         let wynik = devide
-//         alert(wynik)
-//     }
-// }
